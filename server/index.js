@@ -12,7 +12,7 @@ import userRouter from './Routes/userrouter.js';
 import { stripeWebhooks } from './Control/Stripewebhooks.js';
 
 const app = express();
-const port = 5000;
+const port =process.env.PORT || 5000;
 await mongoConnect();
 
 app.post('/api/stripe', express.raw({type : "application/json"}), stripeWebhooks);
