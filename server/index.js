@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv/config';
+import 'dotenv/config';
 import mongoConnect from './config/database.js';
 import { clerkMiddleware } from '@clerk/express';
 import { serve } from "inngest/express";
@@ -12,7 +12,7 @@ import userRouter from './Routes/userrouter.js';
 import { stripeWebhooks } from './Control/Stripewebhooks.js';
 
 const app = express();
-const port =process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 await mongoConnect();
 
 app.post('/api/stripe', express.raw({type : "application/json"}), stripeWebhooks);
@@ -30,7 +30,6 @@ app.use("/api/booking", bookingRouter);
 app.use("/api/admin", adminRouter);
 app.use('/api/user', userRouter);
 
-// Listen at port : 3000
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
 })
